@@ -1,0 +1,5 @@
+Welcome to the WinAnt installer! This installer will install Apache Ant (http://ant.apache.org/) version 1.7.0 onto your system.
+
+Two things to note:
+1) This installer is not intended for use with Windows 9x.
+2) You'll need to have Java (http://java.com/en/download/index.jsp) installed and the java executable on your system path.
