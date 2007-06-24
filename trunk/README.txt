@@ -1,3 +1,0 @@
-To build you will need to install NSIS (http://nsis.sourceforge.net/Main_Page)
-
-May the force be with you...
