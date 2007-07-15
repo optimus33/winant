@@ -1,12 +1,3 @@
-; example1.nsi
-;
-; This script is perhaps one of the simplest NSIs you can make. All of the
-; optional settings are left to their default settings. The installer simply 
-; prompts the user asking them where to install, and drops a copy of example1.nsi
-; there. 
-
-;--------------------------------
-
 ; The name of the installer
 Name "WinAnt"
 
@@ -24,6 +15,20 @@ PageEx license
   LicenseText "Read before installing" "Next >"
   LicenseData info.txt
 PageExEnd
+
+; Custom page to locate Java directory
+Function .onInit
+  InitPluginsDir
+  File /oname=$PLUGINSDIR\find_java.ini find_java.ini
+FunctionEnd
+
+Page custom FindJava
+
+Function FindJava
+  Var /GLOBAL JDK_DIR
+  InstallOptions::dialog $PLUGINSDIR\find_java.ini
+  ReadINIStr $JDK_DIR "$PLUGINSDIR\find_java.ini" "Field 4" "State"
+FunctionEnd
 
 Page directory
 Page instfiles "" "" "post_install"
@@ -50,6 +55,9 @@ Section "Install"
   WriteRegExpandStr HKCU "Environment" "ANT_HOME" "$INSTDIR"
   ReadRegStr $0 HKCU "Environment" "PATH"
   WriteRegExpandStr HKCU "Environment" "PATH" "$0;%ANT_HOME%\bin"
+  
+  ; Set JAVA_HOME
+  WriteRegExpandStr HKCU "Environment" "JAVA_HOME" "$JDK_DIR"
 
   WriteUninstaller $INSTDIR\uninstaller.exe
   
@@ -57,10 +65,12 @@ SectionEnd ; end the section
 
 
 Section "Uninstall"
-  Delete $INSTDIR\Uninst.exe ; delete self (see explanation below why this works)
+  Delete $INSTDIR\Uninst.exe
   RMDir /r $INSTDIR
 
   ; Take Ant off the path
   DeleteRegValue HKCU "Environment" "ANT_HOME"
+  
+  DeleteRegValue HKCU "Environment" "JAVA_HOME"
 SectionEnd
 
