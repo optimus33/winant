@@ -2,7 +2,7 @@
 Name "WinAnt"
 
 ; The file to write
-OutFile "winant-install.exe"
+OutFile "winant-install-v2.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\WinAnt
