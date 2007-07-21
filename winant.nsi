@@ -2,7 +2,7 @@
 Name "WinAnt"
 
 ; The file to write
-OutFile "winant-install-v2.exe"
+OutFile "winant-install-v3.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\WinAnt
@@ -15,6 +15,8 @@ PageEx license
   LicenseText "Read before installing" "Next >"
   LicenseData info.txt
 PageExEnd
+
+Page components
 
 ; Custom page to locate Java directory
 Function .onInit
@@ -34,7 +36,7 @@ Page directory
 Page instfiles "" "" "post_install"
 
 Function post_install
-  MessageBox MB_OK "Now you need to log off and then log back in."
+  MessageBox MB_OK "You must log off and log back in to complete the install process."
 FunctionEnd
 
 UninstPage uninstConfirm
@@ -42,13 +44,12 @@ UninstPage instfiles
 
 ;--------------------------------
 
-; The stuff to install
-Section "Install"
+Section "Ant"
+SectionIn RO ; Makes this section required
 
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
   
-  ; Put file there
   File /r apache-ant-1.7.0\*.*
 
   ; Put Ant on the path
@@ -61,7 +62,11 @@ Section "Install"
 
   WriteUninstaller $INSTDIR\uninstaller.exe
   
-SectionEnd ; end the section
+SectionEnd
+
+Section "Ant-Contrib tasks"
+    File /oname=lib\ant-contrib-1.0b3.jar ant-contrib\ant-contrib-1.0b3.jar
+SectionEnd
 
 
 Section "Uninstall"

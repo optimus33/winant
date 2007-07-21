@@ -1,4 +1,6 @@
-Welcome to WinAnt installer v2, now with the power to set your JAVA_HOME! This installer will install Apache Ant (http://ant.apache.org/) version 1.7.0 onto your system.
+Welcome to WinAnt installer v3!
+
+This installer will install Apache Ant (http://ant.apache.org/) 1.7.0 and (optionally) ant-contrib 1.0b3 onto your system.
 
 NOTE:
 This is not intended for use with Windows 9x.
