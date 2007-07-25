@@ -1,3 +1,0 @@
-= Get it =
-[http://winant.googlecode.com/files/winant-install-v3.exe download the latest version]
-
