@@ -2,7 +2,7 @@
 Name "WinAnt"
 
 ; The file to write
-OutFile "winant-install-v3.exe"
+OutFile "winant-install-v4.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\WinAnt
@@ -50,7 +50,7 @@ SectionIn RO ; Makes this section required
   ; Set output path to the installation directory.
   SetOutPath $INSTDIR
   
-  File /r apache-ant-1.7.0\*.*
+  File /r apache-ant-1.7.1\*.*
 
   ; Put Ant on the path
   WriteRegExpandStr HKCU "Environment" "ANT_HOME" "$INSTDIR"
