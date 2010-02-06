@@ -1,8 +1,11 @@
+!include "EnvVarUpdate.nsh"
+
+
 ; The name of the installer
 Name "WinAnt"
 
 ; The file to write
-OutFile "winant-install-v4.exe"
+OutFile "winant-install-v4.1.exe"
 
 ; The default installation directory
 InstallDir $PROGRAMFILES\WinAnt
@@ -36,7 +39,7 @@ Page directory
 Page instfiles "" "" "post_install"
 
 Function post_install
-  MessageBox MB_OK "You must log off and log back in to complete the install process."
+  MessageBox MB_OK "You may need to log off and log back in to complete the install process."
 FunctionEnd
 
 UninstPage uninstConfirm
@@ -54,8 +57,7 @@ SectionIn RO ; Makes this section required
 
   ; Put Ant on the path
   WriteRegExpandStr HKCU "Environment" "ANT_HOME" "$INSTDIR"
-  ReadRegStr $0 HKCU "Environment" "PATH"
-  WriteRegExpandStr HKCU "Environment" "PATH" "$0;%ANT_HOME%\bin"
+  ${EnvVarUpdate} $0 "PATH" "A" "HKCU" "$INSTDIR\bin" ; this line didn't seem to work when %ANT_HOME% was used, so i just put in $INSTDIR
   
   ; Set JAVA_HOME
   WriteRegExpandStr HKCU "Environment" "JAVA_HOME" "$JDK_DIR"
@@ -75,6 +77,7 @@ Section "Uninstall"
 
   ; Take Ant off the path
   DeleteRegValue HKCU "Environment" "ANT_HOME"
+  ${un.EnvVarUpdate} $0 "PATH" "R" "HKCU" "$INSTDIR\bin"
   
   DeleteRegValue HKCU "Environment" "JAVA_HOME"
 SectionEnd
