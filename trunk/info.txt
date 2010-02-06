@@ -1,12 +1,13 @@
-Welcome to WinAnt installer v4.1
+Welcome to WinAnt installer v5
 
-This will install Apache Ant (http://ant.apache.org/) 1.7.1 and (optionally) ant-contrib 1.0b3 onto your system.
+This will install Apache Ant (http://ant.apache.org/) 1.8.0RC1 and (optionally) ant-contrib 1.0b3 onto your system.
 
 NOTE: This is not intended for use with Windows 9x.
 
 
 CHANGELOG:
-v4.1 - 
+v5 - update to include Ant 1.8.0RC1
+v4.1 - bug fix for problems with updating PATH variable
 v4 - update to include Ant 1.7.1 and Ant-contrib 1.0b3 (thanks to Neustradamus)
 v3 - ...uh, i can't remember :P
 v2 - bug fix to allow specification of JDK location
