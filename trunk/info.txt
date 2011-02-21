@@ -1,11 +1,12 @@
-Welcome to WinAnt installer v6
+Welcome to WinAnt installer v7
 
-This will install Apache Ant (http://ant.apache.org/) 1.8.1 and (optionally) ant-contrib 1.0b3 onto your system.
+This will install Apache Ant (http://ant.apache.org/) 1.8.2 and (optionally) ant-contrib 1.0b3 onto your system.
 
 NOTE: This is not intended for use with Windows 9x.
 
 
 CHANGELOG:
+v7 - update to include Ant 1.8.2
 v6 - update to include Ant 1.8.1
 v5 - update to include Ant 1.8.0RC1
 v4.1 - bug fix for problems with updating PATH variable
